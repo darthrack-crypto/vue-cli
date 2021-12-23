@@ -6,7 +6,7 @@
     <div class="list">
       <div class="item" v-bind:class="{done: task.done}" v-for='task in tasks' :key="task">
         <input type="checkbox" v-model="task.done">
-        {{task.text}}
+        {{task.text}}<like/>
       </div>
     </div>
     <div class="form">
@@ -20,10 +20,13 @@
 
 <script>
 
+import like from './components/Like.vue'
+
 export default {
   name: 'App',
   data() {
         return {
+            textTask: '',
             nameForTask: 'Название задачи',
             tasks: [
                 {text: 'Развернуть окружение в Codepen', done: true},
@@ -40,8 +43,13 @@ export default {
         count() {
             return this.tasks.filter(task => !task.done).length;
         }
+    },
+    components: {
+      like
     }
 }
+
+
 </script>
 
 <style>
