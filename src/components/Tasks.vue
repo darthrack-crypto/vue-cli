@@ -15,7 +15,7 @@
 <script>
 import Like from './Like.vue';
 
-module.exports = {
+export default {
   data() {
         return {
             
