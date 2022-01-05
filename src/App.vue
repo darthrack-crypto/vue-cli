@@ -1,22 +1,22 @@
 <template>
   <h1>Список задач</h1>
-  <div v-if="count() == 0">Вы великолепны!</div>
-  <div v-else-if="count() == 1">Осталя последний рывок!</div>
+  <div v-if="count == 0">Вы великолепны!</div>
+  <div v-else-if="count == 1">Осталя последний рывок!</div>
   <div v-else>
-    Осталось сделать задач: <span class="counter">{{ count() }}</span>
+    Осталось сделать задач: <span class="counter">{{ count }}</span>
   </div>
 
   
-  <tasks :task="this.tasks" :tasks="uncompletedTasks()"/>
+  <tasks :task="this.tasks" :tasks="uncompletedTasks"/>
   <div class="form">
     <input v-model="textTask" />
     <input type="submit" value="Добавить" @click="addTask" />
   </div>
   <transition name="bounce">
-    <img src="rob.jpg" alt="#" v-show="count() == 0" />
+    <img src="rob.jpg" alt="#" v-show="count == 0" />
   </transition>
 
-  <tasks :task="this.tasks" :tasks="completeTasks()"/>
+  <tasks :task="this.tasks" :tasks="completeTasks"/>
 </template>
 
 <script>
@@ -41,6 +41,9 @@ export default {
       this.tasks.push({ text: this.textTask, done: false });
       this.textTask = "";
     },
+    
+  },
+  computed: {
     count() {
       return this.tasks.filter((task) => !task.done).length;
     },
@@ -49,7 +52,7 @@ export default {
     },
     uncompletedTasks() {
       return this.tasks.filter((task) => !task.done);
-    },
+    }
   },
   components: {
     Tasks
