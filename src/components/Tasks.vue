@@ -7,7 +7,7 @@
       :key="task.text"
     >
       <input type="checkbox" v-model="task.done" />
-      {{ task.text }}<like/>
+      {{ task.text }}<like :counter="task.likes"/>
     </div>
   </div>
 </template>
@@ -16,11 +16,6 @@
 import Like from './Like.vue';
 
 export default {
-  data() {
-        return {
-            
-        }
-    },
     props: ['task', 'tasks'],
     components: {
         Like

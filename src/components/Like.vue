@@ -1,14 +1,16 @@
 <template>
-  <button type="button" @click="counter++">&#9829; {{counter}}</button>
+  <button type="button" @click="increment">&#9829; {{value}}</button>
 </template>
 
 <script>
-module.exports = {
-  data() {
-        return {
-            counter: 0
-        }
+export default {
+  props: ['value'],
+  methods: {
+    increment() {
+      console.log(this.value);
+      this.$emit('input', this.value + 1);
     }
+  }
 }
 </script>
 
